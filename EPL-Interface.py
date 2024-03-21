@@ -4,8 +4,8 @@ from tabulate import tabulate
 import os
 import re
 
+# Function to connect to the database
 def connect_to_db(host, user, password, database):
-    
     try:
         db = mysql.connector.connect(
             host = host,
@@ -17,7 +17,8 @@ def connect_to_db(host, user, password, database):
     except mysql.connector.Error as e:
         print(f"Error connecting to MySQL Database: {e}")
         return None
-    
+
+# Exports queries to a csv file
 def export_to_csv(data, headers):
     export = input("Would you like to export this data into a csv file? (y/n): ")
     if export.lower() != 'y':
@@ -29,6 +30,7 @@ def export_to_csv(data, headers):
         csvwriter.writerow(headers)
         csvwriter.writerows(data)
 
+# Sanitizes user-inputted filename to prevent unwanted behvaior
 def sanitize_filename(filename):
     filename = re.sub(r'[<>:"/\\|?*]', '', filename)
     filename = filename.replace(' ', '_')
@@ -38,8 +40,9 @@ def sanitize_filename(filename):
 
     return filename
 
+# First pre-defined query that fetches the Teams with their Players, and the Contract info for each Player
 def teams_players_contract_q(mycursor):
-    print("\nTeams and their Players:\n")
+    print("\nTeams, Players, and their Contracts:\n")
     query = """
     SELECT 
         CONCAT(PLAYER.Fname, ' ', PLAYER.Lname) AS PlayerName,
@@ -64,7 +67,9 @@ def teams_players_contract_q(mycursor):
     print(table)
     export_to_csv(rows, headers) 
 
+# Second pre-defined query that fetches all the players and sorts them by goals scored
 def players_by_goals_q(mycursor):
+    print("\nPlayers sorted by goals scored\n")
     query = """
     SELECT 
         CONCAT(PLAYER.Fname, ' ', PLAYER.Lname) AS PlayerName,
@@ -89,6 +94,8 @@ def players_by_goals_q(mycursor):
     table = tabulate(rows, headers, tablefmt='psql')     
     print(table)
 
+
+# Third pre-defiend query that fetches all the players and sorts them by assists
 def players_by_assists_q(mycursor):
     print("\nPlayers sorted by assists:\n")
     query = """
@@ -115,6 +122,7 @@ def players_by_assists_q(mycursor):
     print(table)
     export_to_csv(rows, headers) 
 
+# Fourth pre-defined query that gets all the fixture information along with results if available
 def fixtures_q(mycursor):
     print("\nFixtures:\n")
     query = """
@@ -139,6 +147,8 @@ def fixtures_q(mycursor):
     print(table)
     export_to_csv(rows, headers) 
 
+# Custom query function that allows users to input their own SQL statements
+# Not enough safeguards so can potentially lead to SQL injections and data integrity issues
 def custom_q(mycursor):
     c2 = "y"
     while c2.lower() == "y":
@@ -158,6 +168,8 @@ def custom_q(mycursor):
             print("\nSomething went wrong: {}".format(err))
             c2 = input("Would you like to try again? (y/n): ")
 
+
+# Command line menu works as a user interface to navigate the possible options
 def print_menu(mycursor):
     while True:
         print("\n-----MENU-----\n")
@@ -190,10 +202,9 @@ def print_menu(mycursor):
             print("Invalid option, please pick 1, 2, 3, 4, or 5.")
 
 def main():
+    # Prompts user to input database connection info
     db = None
-    
     while db is None:
-
         host = input("\nHost: ")
         user = input("Username: ")
         password = input("Password: ")
@@ -204,8 +215,6 @@ def main():
     print_menu(mycursor)
     mycursor.close()
     db.close()
-
-
 
 
 main()
