@@ -7,6 +7,7 @@ This application provides a command-line interface to interact with the English 
 ## Interface Features
 
 - Pre-made queries to retrieve information in table format
+- Option to use custom queries DISCLAIMER: Opens up a lot of risk in terms of SQL injections and data integrity as proper safeguards have not been implemented
 - Option to export querie to csv file
 
 ## Prerequisites
