@@ -168,7 +168,6 @@ def custom_q(mycursor):
             print("\nSomething went wrong: {}".format(err))
             c2 = input("Would you like to try again? (y/n): ")
 
-
 # Command line menu works as a user interface to navigate the possible options
 def print_menu(mycursor):
     while True:
@@ -200,6 +199,7 @@ def print_menu(mycursor):
             return
         else:
             print("Invalid option, please pick 1, 2, 3, 4, or 5.")
+
 
 def main():
     # Prompts user to input database connection info
