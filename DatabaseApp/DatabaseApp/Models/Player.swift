@@ -8,10 +8,10 @@ import Foundation
 
 // Data model for Player
 struct Player: Decodable, Identifiable {
-    var id: Int // Assuming 'PlayerID' is the unique identifier
+    var id: Int 
     var Fname: String
     var Lname: String
-    var DOB: Date? // Assuming the date is returned as a String
+    var DOB: Date?
     var Nationality: String
     var Position: String
 
