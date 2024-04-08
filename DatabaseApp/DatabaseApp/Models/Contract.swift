@@ -25,6 +25,7 @@ struct Contract: Decodable, Identifiable {
     }
 }
 
+// Date formatter
 extension Contract {
     static let dateFormatter: DateFormatter = {
         let formatter = DateFormatter()

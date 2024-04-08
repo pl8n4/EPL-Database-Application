@@ -9,18 +9,20 @@ import SwiftUI
 
 struct TeamDetailView: View {
     var team: CombinedTeamData
+    
     @Environment(\.presentationMode) var presentationMode
     
     @ObservedObject var viewModel: PlayerStatsCoordinatorViewModel
     
     var body: some View {
         VStack{
+            // Navigation header
             HStack {
                 Button(action: {
                     self.presentationMode.wrappedValue.dismiss()
                 }) {
                     HStack {
-                        Image(systemName: "arrow.left") // System-provided icon
+                        Image(systemName: "arrow.left")
                         Text("Back")
                     }
                 }
@@ -39,7 +41,7 @@ struct TeamDetailView: View {
             Divider()
             ScrollView {
                 VStack {
-                    // Display the team's generic info here
+                    // Generic team info
                     HStack{
                         Text("\(team.stadiumName)")
                             .font(.subheadline)
@@ -51,10 +53,8 @@ struct TeamDetailView: View {
                             }
                             .shadow(radius: 7)
                         Divider()
-                        
                     }.padding(.all)
-                    // A custom view that you create for team's generic info like logo, name, stadium, etc.
-                    // Pass filtered player stats to PlayerStatsDetailView
+                    // Calls view to handle player stats
                     PlayerStatsDetailView(viewModel: viewModel, teamID: team.teamID)
                 }
             }

@@ -29,20 +29,7 @@ class StandingsCoordinatorViewModel: ObservableObject {
             self.calculateStandings()
         }
     }
-    /*
-    func matchTeams() {
-        
-        for teams in combinedTeamData {
-            if let matchingTeam = teams.first(where: { $0.teamID == teamData.teamID }) {
-                
-                // At this point, `matchingTeam` is the Team instance that matches the playerData's teamID
-                // You can now use `matchingTeam` for whatever processing you need, such as updating UI, aggregating data, etc.
-                
-                // For example, if you want to update the teamName in CombinedPlayerData in case it's outdated:
-            }
-        }
-    */
-    // Handles all the logic for calculating the stats for the StandingsView
+
     // **Refactor into smaller functions for re-usability in future**
     private func calculateStandings() {
         var standings: [Int: (teamName: String, teamID: Int,  matchesPlayed: Int, points: Int, wins: Int, losses: Int, draws: Int, goals: Int, conceded: Int, stadiumName: String)] = [:]
@@ -90,7 +77,7 @@ class StandingsCoordinatorViewModel: ObservableObject {
             }
         }
         
-        // Convert to and intialize CombinedTeamData for the view
+        // Convert to CombinedTeamData for the view
         combinedTeamData = standings.map {
             CombinedTeamData(
                 teamName: $0.value.teamName,
