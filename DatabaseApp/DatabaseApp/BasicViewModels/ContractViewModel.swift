@@ -1,18 +1,18 @@
 //
-//  MatchViewModel.swift
+//  ContractViewModel.swift
 //  DatabaseApp
 //
-//  Created by Pablo Lasarte on 3/30/24.
+//  Created by Pablo Lasarte on 4/4/24.
 //
 
 import Foundation
 
-class MatchesViewModel: ObservableObject {
-    @Published var matches: [Match] = []
+class ContractsViewModel: ObservableObject {
+    @Published var contracts: [Contract] = []
 
     // Fetches match data from API endpoint
-    func fetchMatches(completion: @escaping () -> Void) {
-        let urlString = "http://127.0.0.1:5000/matches"
+    func fetchContracts(completion: @escaping () -> Void) {
+        let urlString = "http://127.0.0.1:5000/contracts"
         guard let url = URL(string: urlString) else {
             print("Invalid URL")
             return
@@ -25,22 +25,13 @@ class MatchesViewModel: ObservableObject {
                 return
             }
             do {
-                let matches = try Match.decoder.decode([Match].self, from: data)
+                let contracts = try Contract.decoder.decode([Contract].self, from: data)
                 DispatchQueue.main.async {
-                    self?.matches = matches
+                    self?.contracts = contracts
                 }
             } catch {
                 print("Failed to decode JSON: \(error)")
             }
         }.resume()
-    }
-    
-    func getFixtures(){
-        let dispatchGroup = DispatchGroup()
-        
-        dispatchGroup.enter()
-        self.fetchMatches(){
-            dispatchGroup.leave()
-        }
     }
 }
