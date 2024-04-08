@@ -14,6 +14,13 @@ struct Match: Decodable, Identifiable {
     var HomeTeamID: Int
     var AwayTeamID: Int
     var Result: String?
+    var played: Bool {
+        if (Result != nil){
+            true
+        } else {
+            false
+        }
+    }
     
     enum CodingKeys: String, CodingKey {
         case id = "MatchID"

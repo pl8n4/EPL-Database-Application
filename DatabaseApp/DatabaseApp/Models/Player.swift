@@ -10,7 +10,7 @@ import Foundation
 struct Player: Decodable, Identifiable {
     var id: Int 
     var Fname: String
-    var Lname: String
+    var Lname: String?
     var DOB: Date?
     var Nationality: String
     var Position: String
