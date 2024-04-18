@@ -34,6 +34,7 @@ struct TeamDetailView: View {
                 Text(team.teamName)
                     .bold()
                     .font(.title)
+                    .padding(.trailing)
                 
                 Spacer()
                 Spacer()
