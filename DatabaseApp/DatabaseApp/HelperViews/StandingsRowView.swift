@@ -1,7 +1,7 @@
 import SwiftUI
 
 struct StandingsRowView: View {
-    let teamData: CombinedTeamData
+    let teamData: Team
     
     var body: some View {
         HStack{
@@ -20,7 +20,7 @@ struct StandingsRowView: View {
             Text("\(teamData.draws)")
                 .frame(width: 30, alignment: .center)
             Spacer()
-            Text("\(teamData.goals):\(teamData.conceded)")
+            Text("\(teamData.scoredGoals):\(teamData.concededGoals)")
                 .frame(width: 40, alignment: .center)
             Spacer()
             Text("\(teamData.points)")

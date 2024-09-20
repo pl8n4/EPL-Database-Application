@@ -1,15 +1,7 @@
-//
-//  TestTeamDetail.swift
-//  DatabaseApp
-//
-//  Created by Pablo Lasarte on 4/4/24.
-//
-
 import SwiftUI
 
 struct TeamStandingsView: View {
-    @StateObject private var coordinatorViewModel = StandingsCoordinatorViewModel()
-    @StateObject private var playerStatsViewModel = PlayerStatsCoordinatorViewModel()
+    @StateObject private var standings = TeamViewModel()
     
     var body: some View {
         NavigationView{
@@ -40,28 +32,31 @@ struct TeamStandingsView: View {
                         Text("D")
                             .fontWeight(.bold).frame(width: 30, alignment: .center)
                         Spacer()
-                        Text("GLS")
+                        Text("GS")
                             .fontWeight(.bold).frame(width: 40, alignment: .center)
                         Spacer()
                         Text("PTS")
                             .fontWeight(.bold).frame(width: 40, alignment: .center)
                     }.padding(.horizontal, 10)
+                    
                     // Data
-                    ForEach(coordinatorViewModel.combinedTeamData, id: \.teamName) { teamData in
+                    ForEach(standings.teams, id: \.id) { teamData in
                         // Navigation link for more detailed team info
-                        NavigationLink(destination: TeamDetailView(team: teamData, viewModel: playerStatsViewModel)) {
+                        NavigationLink(destination: TeamDetailView(team: teamData)) {
                             StandingsRowView(teamData: teamData)
                         }.buttonStyle(PlainButtonStyle())
                     }
                 }
             }.onAppear {
-                coordinatorViewModel.fetchAllDataAndCalculateStandings()
+                standings.fetchTeams {
+                    print("Teams fetched")
+                }
             }
         }
-        
     }
 }
 
 #Preview {
     TeamStandingsView()
 }
+

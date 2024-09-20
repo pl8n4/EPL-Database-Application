@@ -8,15 +8,19 @@ import Foundation
 
 // Data model for Player
 struct Player: Decodable, Identifiable {
-    var id: Int 
-    var Fname: String
-    var Lname: String?
+    var id: Int
+    var name: String?
+    var teamName: String
+    var teamID: Int
+    var goals: Int
+    var assists: Int
+    var position: String
     var DOB: Date?
-    var Nationality: String
-    var Position: String
+    var nationality: String
 
     enum CodingKeys: String, CodingKey {
-        case id = "PlayerID"
-        case Fname, Lname, DOB, Nationality, Position
+        case id = "playerID"
+        case name = "playerName"
+        case teamName, teamID, goals, assists, position, DOB, nationality
     }
 }

@@ -11,8 +11,8 @@ struct FixturesView: View {
     @StateObject var fixtures = FixturesViewModel()
     @State private var showPlayedOnly = false
     
-    var filteredMatches: [Fixtures] {
-            fixtures.fixtureData.filter { fixture in
+    var filteredMatches: [Fixture] {
+            fixtures.fixtures.filter { fixture in
                 (!showPlayedOnly || fixture.played)
             }
     }
@@ -44,7 +44,9 @@ struct FixturesView: View {
             }
         }
         .onAppear {
-            fixtures.fetchData()
+            fixtures.fetchFixtures(){
+                print("Fixtures fetched.")
+            }
         }
     }
 }

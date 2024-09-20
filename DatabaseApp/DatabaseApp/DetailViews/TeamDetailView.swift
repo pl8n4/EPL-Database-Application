@@ -8,11 +8,10 @@
 import SwiftUI
 
 struct TeamDetailView: View {
-    var team: CombinedTeamData
-    
     @Environment(\.presentationMode) var presentationMode
+    @ObservedObject var players = PlayersViewModel()
+    var team: Team
     
-    @ObservedObject var viewModel: PlayerStatsCoordinatorViewModel
     
     var body: some View {
         VStack{
@@ -42,7 +41,6 @@ struct TeamDetailView: View {
             Divider()
             ScrollView {
                 VStack {
-                    // Generic team info
                     HStack{
                         Text("\(team.stadiumName)")
                             .font(.subheadline)
@@ -56,17 +54,18 @@ struct TeamDetailView: View {
                         Divider()
                     }.padding(.all)
                     // Calls view to handle player stats
-                    PlayerStatsDetailView(viewModel: viewModel, teamID: team.teamID)
+                    PlayerStatsDetailView(viewModel: players, teamID: team.id)
                 }
             }
             .navigationBarHidden(true)
             .onAppear{
-                viewModel.fetchAllDataAndCalculateStats()
+                players.fetchPlayers {
+                    print("Players fetched")
+                }
             }
         }
     }
 }
-
 /*
 #Preview {
     TeamDetailView()

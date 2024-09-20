@@ -9,7 +9,7 @@ import SwiftUI
 
 
 struct FixturesRowView: View {
-    let fixtureData: Fixtures
+    let fixtureData: Fixture
     
     var body: some View {
         HStack{

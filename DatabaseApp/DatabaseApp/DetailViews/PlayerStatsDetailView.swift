@@ -8,14 +8,13 @@
 import SwiftUI
 
 struct PlayerStatsDetailView: View {
-    @ObservedObject var viewModel: PlayerStatsCoordinatorViewModel
-    
+    @ObservedObject var viewModel = PlayersViewModel()
     let teamID: Int
+
     
-    // ** Put this in view model in future**
     // Matches players correct team and sorts them by goal contributions
-    var filteredPlayerStats: [CombinedPlayerData] {
-        let filteredStats = viewModel.combinedPlayerData.filter { $0.teamID == teamID }
+    var filteredPlayerStats: [Player] {
+        let filteredStats = viewModel.players.filter { $0.teamID == teamID }
         return filteredStats.sorted {
             if $0.goals == $1.goals {
                 return $0.assists > $1.assists
@@ -23,7 +22,7 @@ struct PlayerStatsDetailView: View {
             return $0.goals > $1.goals
         }
     }
-    
+
     var body: some View {
         ScrollView{
             VStack{

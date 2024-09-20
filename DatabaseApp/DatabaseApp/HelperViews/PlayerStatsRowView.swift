@@ -8,11 +8,11 @@
 import SwiftUI
 
 struct PlayerStatsRowView: View {
-    let playerData: CombinedPlayerData
+    let playerData: Player
     
     var body: some View {
         HStack{
-            Text(playerData.playerName)
+            Text(playerData.name ?? "N/A")
                 .frame(width: 100, alignment: .leading)
             Spacer()
             Text("\(playerData.goals)")

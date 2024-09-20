@@ -17,7 +17,7 @@ struct MainMenuView: View {
                 }
             FixturesView()
                 .tabItem {
-                    Image(systemName: "list.number")
+                    Image(systemName: "calendar")
                     Text("Fixtures")
                 }
         }

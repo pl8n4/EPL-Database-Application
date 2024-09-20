@@ -7,10 +7,10 @@
 
 import Foundation
 
-class TeamsViewModel: ObservableObject {
+class TeamViewModel: ObservableObject {
     @Published var teams: [Team] = []
 
-    // Fetches team data from API endpoint
+// Fetches team data from API endpoint
     func fetchTeams(completion: @escaping () -> Void) {
         let urlString = "http://127.0.0.1:5000/teams"
         guard let url = URL(string: urlString) else {

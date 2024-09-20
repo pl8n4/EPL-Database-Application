@@ -17,6 +17,9 @@ def create_app():
     from routes.contract_routes import setup_contract_routes
     from routes.scorer_assister_routes import setup_assister_routes, setup_scorer_routes
     
+    #from services.player_service import get_players_with_stats
+    #from services.team_service import get_team_data
+    
     # Initialize route setups
     setup_player_routes(app)
     setup_team_routes(app)
