@@ -2,30 +2,62 @@
 
 ## Description
 
-This application provides a command-line interface to interact with the English Premier League (EPL) database. It allows users to view team rosters along with contract details, list players by goals or assists, and view all past and upcoming fixtures for the 22/23 season.
+This application provides an iOS UI to interact with the English Premier League Stats Tracker. It allows users to view league standings, past and upcoming fixtures, team info, and player stats for sample matches from the 22/24 season.
 
 ## Interface Features
 
-- Pre-made queries to retrieve information in table format
-- Option to use custom queries DISCLAIMER: Opens up a lot of risk in terms of SQL injections and data integrity as proper safeguards have not been implemented
-- Option to export querie results to a csv file
+- View English Premier League team standings
+- Track player statistics such as goals, assists, and positions
+- View upcoming and past fixtures with results
+- Filter fixtures by played/unplayed status
+- View detailed match statistics for each game
 
-## Prerequisites
+# Technologies Used
 
-Before running this application, ensure you have the following:
+### Backend
+- **Python** with **Flask** for the API
+- **SQLAlchemy** for ORM (Object Relational Mapping)
+- **MySQL** database for storing player, team, match, and fixture data
+- **SQLAlchemy Aliases** for complex database queries
+- **Flask's built-in server** for running the backend locally
 
-- Python
-- MySQL server running on your local machine or a remote server
-- `mysql-connector-python` installed in your Python environment
-- 'tabulate' Python library installed in your Python enviornment
+### Frontend
+- **SwiftUI** for creating the iOS user interface
+- **Combine** for handling data bindings and reactive programming in Swift
+- **Alamofire** or **URLSession** for making API requests to the Flask backend
 
-## Database Setup
+## Project Structure
 
-You need to use the EPL_dump.sql file and import it into mySQL Workbech or make a SQL schema with a similar structure
-For help with importing the sql file you can refer to this video: https://www.youtube.com/watch?v=JgUuR67zvQg
+├── DatabaseApp/            # Swift UI source code
+├── DTO_models/             # Data Transfer Object (DTO) classes for returning API data
+├── models/                 # SQLAlchemy models representing database tables
+├── routes/                 # API routes for players, teams, and fixtures
+├── services/               # Service layer to handle business logic and prepare DTO
+├── app.py                  # Main Flask application file
+├── EPL_dump.sql            # SQL dump of the EPL database (for easy setup)
+├── extensions.py           # SQLAlchemy extensions and other utilities
+├── README.md               # Project documentation (this file)
 
-## Application Setup and Use
 
-You don't need to do any setup before running the application aside from setting up the database
-Once you run it, enter in the correct information for host, user, password, and database with your MySQL server details as it instructs you
-Use the text-based menu to navigate the different possible queries
+# Installation
+
+## Backend Setup
+1. Clone the repository
+2. Create a virtual environment and activate it
+3. Install dependencies:
+    - Found in requirements.txt
+4. Set up your MySQL database:
+    - Ensure MySQL is installed on your system. Then import the provided EPL_dump.sql file:
+    - mysql -u yourusername -p epl_database < EPL_dump.sql
+5. Change app.py file to your SQL credentials 
+
+## Frontend (iOS) Setup
+1. Open the Xcode project:
+2. Add necessary dependancies if needed (Alamofire)
+
+## Running the iOS App
+
+1. Run the app.py file in the backend and ensure the endpoints are updated
+2. Build and run the app on a simulator
+
+The app should now be fetching data from your Flask backend and displaying team standings, player stats, and fixtures.
