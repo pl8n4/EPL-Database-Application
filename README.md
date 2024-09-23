@@ -12,7 +12,7 @@ This application provides an iOS UI to interact with the English Premier League 
 - Filter fixtures by played/unplayed status
 - View detailed match statistics for each game
 
-# Technologies Used
+## Technologies Used
 
 ### Backend
 - **Python** with **Flask** for the API
@@ -25,18 +25,6 @@ This application provides an iOS UI to interact with the English Premier League 
 - **SwiftUI** for creating the iOS user interface
 - **Combine** for handling data bindings and reactive programming in Swift
 - **Alamofire** or **URLSession** for making API requests to the Flask backend
-
-## Project Structure
-
-├── DatabaseApp/            # Swift UI source code
-├── DTO_models/             # Data Transfer Object (DTO) classes for returning API data
-├── models/                 # SQLAlchemy models representing database tables
-├── routes/                 # API routes for players, teams, and fixtures
-├── services/               # Service layer to handle business logic and prepare DTO
-├── app.py                  # Main Flask application file
-├── EPL_dump.sql            # SQL dump of the EPL database (for easy setup)
-├── extensions.py           # SQLAlchemy extensions and other utilities
-├── README.md               # Project documentation (this file)
 
 
 # Installation
