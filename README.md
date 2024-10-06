@@ -2,7 +2,7 @@
 
 ## Description
 
-This application provides an iOS UI to interact with the English Premier League Stats Tracker. It allows users to view league standings, past and upcoming fixtures, team info, and player stats for sample matches from the 22/24 season.
+This application provides an iOS UI to interact with an English Premier League Database. It allows users to view league standings, past and upcoming fixtures, team info, and player stats for sample matches from the 22/23 season.
 
 ## Interface Features
 
